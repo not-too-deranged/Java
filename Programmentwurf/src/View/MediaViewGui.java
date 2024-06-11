@@ -9,8 +9,8 @@ import java.util.List;
 public class MediaViewGui extends JFrame {
     static JFrame f;
     HashMap<String, List<String>> records;
-    static String[] comboTypes ={"TV Shows", "Movies", "--"};
-    static String[] comboGenre ={"Action & Adventure", "Comedies", "Horror", "Sci-Fi & Fantasy", "Thrillers", "Children & Family", "Romantic", "Documentaries", "Unterhaltung"};
+    static String[] comboTypes ={"-", "TV Shows", "Movies"};
+    static String[] comboGenre ={"-","Action & Adventure", "Comedies", "Horror", "Sci-Fi & Fantasy", "Thrillers", "Children & Family", "Romantic", "Documentaries", "Unterhaltung"};
 
     static JComboBox<String> type = new JComboBox<>(comboTypes);
     static JComboBox<String> search = new JComboBox<>();

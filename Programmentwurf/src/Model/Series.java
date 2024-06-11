@@ -5,6 +5,11 @@ import java.util.Objects;
 
 public class Series extends Media {
     private int numberOfSeasons;
+
+    public Series(String title, String genre, String director, String cast, int releaseYear, String ageRating, String description) {
+        super(title, genre, director, cast, releaseYear, ageRating, description);
+    }
+
     public int getNumberOfSeasons() {
         return numberOfSeasons;
     }

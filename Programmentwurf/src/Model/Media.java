@@ -9,6 +9,17 @@ public class Media {
     private String genre;
     private String description;
 
+    public Media(String title, String genre, String director, String cast, int releaseYear, String ageRating, String description) {
+        this.title = title;
+        this.genre = genre;
+        this.director = director;
+        this.cast = cast;
+        this.releaseYear = releaseYear;
+        this.ageRating = ageRating;
+        this.description = description;
+
+    }
+
     @Override
     public String toString() {
         return super.toString();
