@@ -15,5 +15,5 @@ public class MediaStorage {
 public static void addElementsToList(Media mediaItems){
        mediaList.add(mediaItems);
 }
-   //TODO methode add element to media list mediaList.add(media);
+
 }

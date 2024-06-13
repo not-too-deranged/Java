@@ -1,6 +1,8 @@
 package Model;
 
+import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 public class Movies extends Media {
     private int durationInMin;
@@ -26,7 +28,7 @@ public class Movies extends Media {
         return Objects.hash(durationInMin);
     }
 
-    public Movies(String title, String genre, String director, String cast, int releaseYear, String ageRating, String description, int durationInMin) {
+    public Movies(String title, Set<String> genre, String director, String cast, int releaseYear, String ageRating, String description, int durationInMin) {
         super(title, genre, director, cast, releaseYear, ageRating, description);
         this.durationInMin = durationInMin;
 

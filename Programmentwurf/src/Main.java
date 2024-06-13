@@ -23,11 +23,6 @@ public class Main {
             selectedFile = jfc.getSelectedFile();
         }
 
-        List<String> moviesList = new ArrayList<>();
-        List<String> tvShowsList = new ArrayList<>();
-
-        categorizeLines(selectedFile, moviesList, tvShowsList);
-        System.out.println(tvShowsList.get(1).title);
 
 
 
