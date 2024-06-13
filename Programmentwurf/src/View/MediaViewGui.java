@@ -14,7 +14,7 @@ public class MediaViewGui extends JFrame {
 
     static JComboBox<String> type = new JComboBox<>(comboTypes);
     static JComboBox<String> search = new JComboBox<>();
-    static JLabel descrpitionField = new JLabel();
+    static JLabel descriptionField = new JLabel();
     static JLabel directorField = new JLabel();
     static JLabel actorsField = new JLabel();
     static JLabel countryField = new JLabel();
@@ -46,7 +46,7 @@ public class MediaViewGui extends JFrame {
 
         p.add(suche);
         p.add(description);
-        p.add(descrpitionField);
+        p.add(descriptionField);
         p.add(director);
         p.add(directorField);
         p.add(actors);
@@ -86,7 +86,7 @@ public class MediaViewGui extends JFrame {
                 data[i][3] = mediaInfo.get(9);
                 data[i][4] = mediaInfo.get(7);
                 data[i][5] = mediaInfo.get(8);
-                descrpitionField.setText(mediaInfo.get(11));
+                descriptionField.setText(mediaInfo.get(11));
                 directorField.setText(mediaInfo.get(3));
                 actorsField.setText(mediaInfo.get(4));
                 countryField.setText(mediaInfo.get(5));
@@ -99,7 +99,7 @@ public class MediaViewGui extends JFrame {
         } else {
             tableScrollPane.setVisible(false);
             List<String> mediaInfo = records.get(media);
-            descrpitionField.setText(mediaInfo.get(0));
+            descriptionField.setText(mediaInfo.get(0));
             directorField.setText(mediaInfo.get(1));
             actorsField.setText(mediaInfo.get(2));
             countryField.setText(mediaInfo.get(3));
