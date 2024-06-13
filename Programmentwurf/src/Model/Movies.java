@@ -11,12 +11,12 @@ public class Movies extends Media {
         this.durationInMin = durationInMin;
     }
 
-    @Override //when questioned in cmd
+    @Override //TODO when questioned in cmd
     public String toString() {
         return super.toString();
     }
 
-    @Override //when same movies
+    @Override //TODO when same movies
     public boolean equals(Object obj) {
         return super.equals(obj);
     }

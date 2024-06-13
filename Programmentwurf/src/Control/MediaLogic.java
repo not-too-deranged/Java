@@ -1,5 +1,7 @@
 package Control;
 
+import Model.Media;
+import Model.MediaStorage;
 import Model.Movies;
 
 import java.io.BufferedReader;
@@ -113,6 +115,7 @@ public class MediaLogic {
                             genres = values[10].replace("Docuseries", "Documentaries");
                             break;
 
+
                         case "Anime":
                             genres = values[10].replace("Anime", "Animation");
                             break;
@@ -143,7 +146,7 @@ public class MediaLogic {
                             break;
                     }
 
-                    //change age and genre here, add director etc
+                    //TODO change age and genre here, add director etc
                     String title = values[2];
                     String genre = genres;
                     String director = values[3];
@@ -152,13 +155,13 @@ public class MediaLogic {
                     String ageRating = age;
                     String description = values[11];
                     if (values[1].equalsIgnoreCase("Movie")) {
-                        //eliminate min
+                        //TODO eliminate min
                         int durationInMin = Integer.parseInt(values[9]);
                         Movies movie = new Movies(title, genre, director, cast, releaseYear, ageRating, description, durationInMin);
-                        //methode add movie to list aufrufen
+                        MediaStorage.addElementsToList(movie);
                     } else if (values[1].equalsIgnoreCase("TV Show")) {
-                        //Series = new ...
-                        //methode add movie to list aufrufen
+                        //TODO Series = new ...
+                        //TODO methode add movie to list aufrufen
                     }
 
 
@@ -169,7 +172,7 @@ public class MediaLogic {
         }
     }
 
-
+//TODO remove this method
     public static String[] getSortedShow(Set<String> show) {
         String[] sortedShow = new String[show.size()];
         sortedShow = show.toArray(sortedShow);
