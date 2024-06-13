@@ -66,84 +66,55 @@ public class MediaLogic {
                             continue;
                     }
                     Set<String> genres = new HashSet<String>(List.of(values[10].split(",")));
-                    genres = genres.stream().map(f -> switch (f){
-                        case "Action & Adventure" ->
-                            f = "Action & Adventure";
+                    genres = genres.stream().map(f -> switch (f) {
+                        case "Action & Adventure" -> f = "Action & Adventure";
                         case "TV Action & Adventure" ->
-                            f = values[10].replace("TV Action & Adventure", "Action & Adventure");
-                        case "Comedies" ->
-                            f = "Comedies";
-                        case "TV Comedies"->
-                            f = values[10].replace("TV Comedies", "Comedies");
-                        case "Stand-Up Comedy"->
-                            f = values[10].replace("Stand-Up Comedy", "Comedies");
-                        case "Stand-Up Comedy & Talk Shows"->
-                            f = values[10].replace("Stand-Up Comedy & Talk Shows", "Comedies");
-                        case "Dramas"->
-                            f = "Dramas";
-                        case "TV Dramas"->
-                            f = values[10].replace("TV Dramas", "Dramas");
-                        case "Horror Movies"->
-                            f = values[10].replace("Horror Movies", "Horror");
-                        case "TV Horror"->
-                            f = values[10].replace("TV Horror", "Horror");
-                        case "Sci-Fi & Fantasy"->
-                            f = "Sci-Fi & Fantasy";
-                        case "TV Sci-Fi & Fantasy"->
-                            f = values[10].replace("TV Sci-Fi & Fantasy", "Science Fiction");
-                        case "Thrillers"->
-                            f = "Thrillers";
-                        case "TV Thrillers"->
-                            f = values[10].replace("TV Thrillers", "Thriller");
-                        case "Children & Family Movies"->
-                            f = values[10].replace("Children & Family Movies", "Children & Family");
-                        case "Kids' TV"->
-                            f = values[10].replace("Kids' TV", "Children & Family");
-                        case "Romantic Movies"->
-                            f = values[10].replace("Romantic Movies", "Romantic");
-                        case "Romantic TV Shows"->
-                            f = values[10].replace("Romantic TV Shows", "Romantic");
-                        case "Documentaries"->
-                            f = "Documentaries";
-                        case "Docuseries"->
-                            f = values[10].replace("Docuseries", "Documentaries");
+                                f = values[10].replace("TV Action & Adventure", "Action & Adventure");
+                        case "Comedies" -> f = "Comedies";
+                        case "TV Comedies" -> f = values[10].replace("TV Comedies", "Comedies");
+                        case "Stand-Up Comedy" -> f = values[10].replace("Stand-Up Comedy", "Comedies");
+                        case "Stand-Up Comedy & Talk Shows" ->
+                                f = values[10].replace("Stand-Up Comedy & Talk Shows", "Comedies");
+                        case "Dramas" -> f = "Dramas";
+                        case "TV Dramas" -> f = values[10].replace("TV Dramas", "Dramas");
+                        case "Horror Movies" -> f = values[10].replace("Horror Movies", "Horror");
+                        case "TV Horror" -> f = values[10].replace("TV Horror", "Horror");
+                        case "Sci-Fi & Fantasy" -> f = "Sci-Fi & Fantasy";
+                        case "TV Sci-Fi & Fantasy" -> f = values[10].replace("TV Sci-Fi & Fantasy", "Science Fiction");
+                        case "Thrillers" -> f = "Thrillers";
+                        case "TV Thrillers" -> f = values[10].replace("TV Thrillers", "Thriller");
+                        case "Children & Family Movies" ->
+                                f = values[10].replace("Children & Family Movies", "Children & Family");
+                        case "Kids' TV" -> f = values[10].replace("Kids' TV", "Children & Family");
+                        case "Romantic Movies" -> f = values[10].replace("Romantic Movies", "Romantic");
+                        case "Romantic TV Shows" -> f = values[10].replace("Romantic TV Shows", "Romantic");
+                        case "Documentaries" -> f = "Documentaries";
+                        case "Docuseries" -> f = values[10].replace("Docuseries", "Documentaries");
+
+//TODO finish Entertainment genre
+
+                        case "Anime" -> f = values[10].replace("Anime", "Animation");
 
 
-
-                        case "Anime"->
-                            f = values[10].replace("Anime", "Animation");
+                        case "Crime TV Shows" -> f = values[10].replace("Crime TV Shows", "Crime");
 
 
+                        case "International TV Shows" ->
+                                f = values[10].replace("International TV Shows", "International");
 
-                        case "Crime TV Shows"->
-                            f = values[10].replace("Crime TV Shows", "Crime");
-
-
-                        case "International TV Shows"->
-                            f = values[10].replace("International TV Shows", "International");
-
-                        case "Movies"->
-                            f = values[10].replace("Movies", "Movie");
+                        case "Movies" -> f = values[10].replace("Movies", "Movie");
 
 
-                        case "Science & Nature TV"->
-                            f = values[10].replace("Science & Nature TV", "Science");
+                        case "Science & Nature TV" -> f = values[10].replace("Science & Nature TV", "Science");
 
 
-
-                        case "TV Mysteries"->
-                            f = values[10].replace("TV Mysteries", "Mystery");
+                        case "TV Mysteries" -> f = values[10].replace("TV Mysteries", "Mystery");
 
 
-                        case "TV Shows"->
-                            f = values[10].replace("TV Shows", "TV Show");
+                        case "TV Shows" -> f = values[10].replace("TV Shows", "TV Show");
 
                     }).collect(toList());
-                    //TODO split values[10] up by , and make switch case in while(..!= null)
 
-
-
-                    //TODO change genre here, make sure genre is just mentioned once
                     String title = values[2];
                     Set<String> genre = genres;
                     String director = values[3];
@@ -152,11 +123,12 @@ public class MediaLogic {
                     String ageRating = age;
                     String description = values[11];
                     if (values[1].equalsIgnoreCase("Movie")) {
-                        //TODO eliminate min
-                        int durationInMin = Integer.parseInt(values[9]);
+                        int durationInMin = Integer.parseInt(values[9].replace(" min", ""));
                         Movies movie = new Movies(title, genre, director, cast, releaseYear, ageRating, description, durationInMin);
                         MediaStorage.addElementsToList(movie);
                     } else if (values[1].equalsIgnoreCase("TV Show")) {
+                        String seasons = values[9].replaceAll("\\w$", "");
+                        int numberOfSeasons = Integer.parseInt(seasons.replace(" Season", ""));
                         //TODO eliminate seasons
                         //TODO Series = new ...
                         //TODO methode add movie to list aufrufen
