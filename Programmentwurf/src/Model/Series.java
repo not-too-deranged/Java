@@ -3,11 +3,12 @@ package Model;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 public class Series extends Media {
     private int numberOfSeasons;
 
-    public Series(String title, List<String> genre, String director, String cast, int releaseYear, String ageRating, String description) {
+    public Series(String title, Set<String> genre, String director, String cast, int releaseYear, String ageRating, String description, int numberOfSeasons) {
         super(title, genre, director, cast, releaseYear, ageRating, description);
     }
 
@@ -16,7 +17,7 @@ public class Series extends Media {
     }
     public void setNumberOfSeasons(int numberOfSeasons) {
         this.numberOfSeasons = numberOfSeasons;
-    } //define what must be true about seasons
+    } //TODO define what must be true about seasons
 
     @Override
     public String toString() {
