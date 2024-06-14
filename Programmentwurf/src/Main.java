@@ -22,7 +22,7 @@ public class Main {
         if (returnValue == JFileChooser.APPROVE_OPTION) {
             selectedFile = jfc.getSelectedFile();
         }
-        categorizeLines( selectedFile,  moviesList, tvShowsList);
+        categorizeLines( selectedFile);
 
 
 
