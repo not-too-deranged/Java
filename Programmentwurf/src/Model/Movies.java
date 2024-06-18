@@ -28,8 +28,8 @@ public class Movies extends Media {
         return Objects.hash(durationInMin);
     }
 
-    public Movies(String title, Set<String> genre, String director, String cast, int releaseYear, String ageRating, String description, int durationInMin) {
-        super(title, genre, director, cast, releaseYear, ageRating, description);
+    public Movies(String title, Set<String> genre, String director, String cast, String country, int releaseYear, String ageRating, String description, int durationInMin) {
+        super(title, genre, director, cast, country, releaseYear, ageRating, description);
         this.durationInMin = durationInMin;
 
     }

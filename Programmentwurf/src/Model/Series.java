@@ -8,8 +8,9 @@ import java.util.Set;
 public class Series extends Media {
     private int numberOfSeasons;
 
-    public Series(String title, Set<String> genre, String director, String cast, int releaseYear, String ageRating, String description, int numberOfSeasons) {
-        super(title, genre, director, cast, releaseYear, ageRating, description);
+    public Series(String title, Set<String> genre, String director, String cast, String country, int releaseYear, String ageRating, String description, int numberOfSeasons) {
+        super(title, genre, director, cast, country, releaseYear, ageRating, description);
+        this.numberOfSeasons = numberOfSeasons;
     }
 
     public int getNumberOfSeasons() {
