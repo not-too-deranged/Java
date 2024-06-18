@@ -5,6 +5,7 @@ import Model.Media;
 import Model.MediaStorage;
 import Model.Movies;
 import Model.Series;
+import View.MediaViewGui;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -117,4 +118,15 @@ public class MediaLogic {
         String[] information = {media.get().getDescription(), media.get().getDirector(), media.get().getCast(), media.get().getCountry()};
         return information;
     }
+    public void getSearchResults(String userInput)    {
+        List<Media> mediaList = MediaStorage.getMediaList();
+        List<Media> media = mediaList.stream().filter(f -> f.getTitle().toLowerCase().contains(userInput.toLowerCase())).toList();
+        MediaViewGui.setLabels(media);
+    }
+
+    public void buttonFilter(String UserInput){
+        getSearchResults(UserInput);
+
+    }
+
 }

@@ -49,6 +49,8 @@ public class MediaViewGui extends JFrame {
         JButton addFavourites = new JButton("+ Favoriten");
         JButton openFavourites = new JButton("Favoriten öffnen");
 
+        searchButton.addActionListener(s -> mediaLogic.buttonFilter(searchField.getText()));
+
         JLabel search = new JLabel("Suche");
         JLabel description = new JLabel("Beschreibung:");
         JLabel director = new JLabel("Regisseur:");
@@ -110,7 +112,7 @@ public class MediaViewGui extends JFrame {
     }
 
 
-    public void setLabels(List<Media> mediaTable) {
+    public static void setLabels(List<Media> mediaTable) {
         String[] columnNames = {"Titel", "Genres", "Typ", "Dauer/Staffel", "Jahr", "Altersfreigabe"};
         String[][] data = new String[mediaTable.size()][6];
 
@@ -139,4 +141,7 @@ public class MediaViewGui extends JFrame {
 
 
     }
+
+
+
 }
