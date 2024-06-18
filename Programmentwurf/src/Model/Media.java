@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class Media {
+public class Media implements Comparable<Media>{
     private String title;
     public String getTitle(){ return title;}
     private String director;
@@ -35,6 +35,10 @@ public class Media {
     private String description;
     public String getDescription(){
         return description;
+    }
+
+    public int compareTo(Media data){
+        return data.releaseYear - this.releaseYear;
     }
 
     public Media(String title, Set<String> genre, String director, String cast, String country, int releaseYear, String ageRating, String description) {

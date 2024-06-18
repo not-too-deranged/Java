@@ -1,3 +1,4 @@
+import Control.MediaLogic;
 import Model.MediaStorage;
 import View.MediaViewGui;
 
@@ -18,16 +19,21 @@ public class Main {
         JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
         File selectedFile = null;
 
+        MediaLogic mediaLogic = new MediaLogic();
+
         int returnValue = jfc.showOpenDialog(null);
 
         if (returnValue == JFileChooser.APPROVE_OPTION) {
             selectedFile = jfc.getSelectedFile();
         }
-        categorizeLines( selectedFile);
+        mediaLogic.categorizeLines( selectedFile);
+        mediaLogic.sortData(MediaStorage.getMediaList());
 
         MediaViewGui searchGui = new MediaViewGui();
         searchGui.setLabels(MediaStorage.getMediaList());
         MediaViewGui.titleSearch();
+
+
 
 
 

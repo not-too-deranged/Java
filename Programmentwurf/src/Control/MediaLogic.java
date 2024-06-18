@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 
 
 public class MediaLogic {
-    public static void categorizeLines(File selectedFile) {
+    public void categorizeLines(File selectedFile) {
         try {
             assert selectedFile != null;
             try (BufferedReader br = new BufferedReader(new FileReader(selectedFile))) {
@@ -101,12 +101,13 @@ public class MediaLogic {
                         Series series = new Series(title, genre, director, cast, country, releaseYear, ageRating, description, numberOfSeasons);
                         MediaStorage.addElementsToList(series);
                     }
-
-
                 }
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+    public void sortData(List<Media> mediaData){
+        Collections.sort(mediaData);
     }
 }
