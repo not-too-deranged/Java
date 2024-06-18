@@ -49,7 +49,7 @@ public class MediaViewGui extends JFrame {
         JButton addFavourites = new JButton("+ Favoriten");
         JButton openFavourites = new JButton("Favoriten öffnen");
 
-        searchButton.addActionListener(s -> mediaLogic.buttonFilter(searchField.getText()));
+        searchButton.addActionListener(s -> mediaLogic.buttonFilter(searchField.getText(), type.getSelectedItem().toString(), genre.getSelectedItem().toString()));
 
         JLabel search = new JLabel("Suche");
         JLabel description = new JLabel("Beschreibung:");
