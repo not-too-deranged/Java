@@ -6,7 +6,7 @@ import java.util.List;
 public class MediaStorage {
    private static List<Media> mediaList = new ArrayList<>();
 
-   public List<Media> getMediaList(){
+   public static List<Media> getMediaList(){
        return mediaList;
    }
     public void setMediaList(List<Media> mediaList){
