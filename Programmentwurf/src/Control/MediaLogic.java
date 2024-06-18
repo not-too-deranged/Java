@@ -110,4 +110,11 @@ public class MediaLogic {
     public void sortData(List<Media> mediaData){
         Collections.sort(mediaData);
     }
+
+    public String[] getInformation(String title)    {
+        List<Media> mediaList = MediaStorage.getMediaList();
+        Optional<Media> media = mediaList.stream().filter(f -> f.getTitle().equals(title)).findFirst();
+        String[] information = {media.get().getDescription(), media.get().getDirector(), media.get().getCast(), media.get().getCountry()};
+        return information;
+    }
 }

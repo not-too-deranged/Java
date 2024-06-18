@@ -12,14 +12,13 @@ import javax.swing.filechooser.FileSystemView;
 import static Control.MediaLogic.*;
 
 public class Main {
-    private static final MediaViewGui gui = new MediaViewGui();
+    static MediaLogic mediaLogic = new MediaLogic();
+    private static final MediaViewGui gui = new MediaViewGui(mediaLogic);
 
     public static void main(String[] args) {
 
         JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
         File selectedFile = null;
-
-        MediaLogic mediaLogic = new MediaLogic();
 
         int returnValue = jfc.showOpenDialog(null);
 
@@ -29,7 +28,7 @@ public class Main {
         mediaLogic.categorizeLines( selectedFile);
         mediaLogic.sortData(MediaStorage.getMediaList());
 
-        MediaViewGui searchGui = new MediaViewGui();
+        MediaViewGui searchGui = new MediaViewGui(mediaLogic);
         searchGui.setLabels(MediaStorage.getMediaList());
         MediaViewGui.titleSearch();
 
