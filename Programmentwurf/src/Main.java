@@ -1,3 +1,4 @@
+import Model.MediaStorage;
 import View.MediaViewGui;
 
 
@@ -23,6 +24,10 @@ public class Main {
             selectedFile = jfc.getSelectedFile();
         }
         categorizeLines( selectedFile);
+
+        MediaViewGui searchGui = new MediaViewGui();
+        searchGui.setLabels(MediaStorage.getMediaList());
+        MediaViewGui.titleSearch();
 
 
 

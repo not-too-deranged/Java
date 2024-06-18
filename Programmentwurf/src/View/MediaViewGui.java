@@ -1,5 +1,9 @@
 package View;
 
+import Model.Media;
+import Model.Movies;
+import Model.Series;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -8,11 +12,12 @@ import java.util.List;
 
 public class MediaViewGui extends JFrame {
     static JFrame f;
-    HashMap<String, List<String>> records;
-    static String[] comboTypes ={"-", "TV Shows", "Movies"};
-    static String[] comboGenre ={"-","Action & Adventure", "Comedies", "Horror", "Sci-Fi & Fantasy", "Thrillers", "Children & Family", "Romantic", "Documentaries", "Unterhaltung"};
+
+    static String[] comboTypes = {"-", "TV Shows", "Movies"};
+    static String[] comboGenre = {"-", "Action & Adventure", "Comedies", "Horror", "Sci-Fi & Fantasy", "Thrillers", "Children & Family", "Romantic", "Documentaries", "Entertainment"};
 
     static JComboBox<String> type = new JComboBox<>(comboTypes);
+    static JComboBox<String> genre = new JComboBox<>(comboGenre);
     static JComboBox<String> search = new JComboBox<>();
     static JLabel descriptionField = new JLabel();
     static JLabel directorField = new JLabel();
@@ -21,7 +26,7 @@ public class MediaViewGui extends JFrame {
     static JTable tvShowsTable = new JTable();
     static JScrollPane tableScrollPane = new JScrollPane(tvShowsTable);
 
-    public static void titelSearch() {
+    public static void titleSearch() {
         f = new JFrame("Film & Serien Suche");
 
         try {
@@ -43,8 +48,8 @@ public class MediaViewGui extends JFrame {
 
         JPanel p = new JPanel(new GridLayout(8, 1));
         JPanel q = new JPanel(new GridLayout(1, 2));
+        JPanel pq = new JPanel(new BorderLayout());
 
-        p.add(suche);
         p.add(description);
         p.add(descriptionField);
         p.add(director);
@@ -56,14 +61,16 @@ public class MediaViewGui extends JFrame {
         q.add(addFavourites);
         q.add(openFavourites);
 
-        f.setVisible(true);
-        f.add(type, BorderLayout.NORTH);
-        f.add(p, BorderLayout.CENTER);
-        f.add(q, BorderLayout.SOUTH);
+        pq.add(p, BorderLayout.CENTER);
+        pq.add(q, BorderLayout.NORTH);
 
-        // Add the table scroll pane to the frame, initially hidden
-        tableScrollPane.setVisible(false);
-        f.add(tableScrollPane, BorderLayout.EAST);
+        f.setVisible(true);
+        f.add(genre, BorderLayout.NORTH);
+        f.add(type, BorderLayout.NORTH);
+        f.add(pq, BorderLayout.SOUTH);
+
+
+        f.add(tableScrollPane, BorderLayout.CENTER);
 
         f.setSize(600, 400);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -71,37 +78,35 @@ public class MediaViewGui extends JFrame {
     }
 
 
+    public void setLabels(List<Media> mediaTable) {
+        String[] columnNames = {"Titel", "Genres", "Typ", "Dauer/Staffel", "Jahr", "Altersfreigabe"};
+        String[][] data = new String[mediaTable.size()][6];
 
-    public void setLabels(String media) {
-        if (media.equals("TV Show")) {
-            String[] columnNames = {"Titel", "Genres", "Typ", "Dauer/Staffel", "Jahr", "Altersfreigabe"};
-            String[][] data = new String[records.size()][6];
-
-            int i = 0;
-            for (String key : records.keySet()) {
-                List<String> mediaInfo = records.get(key);
-                data[i][0] = mediaInfo.get(2);
-                data[i][1] = mediaInfo.get(10);
-                data[i][2] = mediaInfo.get(1);
-                data[i][3] = mediaInfo.get(9);
-                data[i][4] = mediaInfo.get(7);
-                data[i][5] = mediaInfo.get(8);
-                descriptionField.setText(mediaInfo.get(11));
-                directorField.setText(mediaInfo.get(3));
-                actorsField.setText(mediaInfo.get(4));
-                countryField.setText(mediaInfo.get(5));
-                i++;
+        int i = 0;
+        for (Media key : mediaTable) {
+            data[i][0] = key.getTitle();
+            data[i][1] = key.getGenre().toString();
+            if (key instanceof Movies m) {
+                data[i][2] = String.valueOf(m.getDurationInMin());
+                data[i][3] = "Movie";
+            } else {
+                Series s = (Series) key;
+                data[i][2] = String.valueOf(s.getNumberOfSeasons());
+                data[i][3] = "Show";
             }
 
-            tvShowsTable.setModel(new javax.swing.table.DefaultTableModel(data, columnNames));
-            tableScrollPane.setVisible(true);
-
-        } else {
-            tableScrollPane.setVisible(false);
-            List<String> mediaInfo = records.get(media);
-            descriptionField.setText(mediaInfo.get(0));
-            directorField.setText(mediaInfo.get(1));
-            actorsField.setText(mediaInfo.get(2));
-            countryField.setText(mediaInfo.get(3));
+            data[i][4] = String.valueOf(key.getReleaseYear());
+            data[i][5] = key.getAgeRating();
+            descriptionField.setText(key.getDescription());
+            directorField.setText(key.getDirector());
+            actorsField.setText(key.getCast());
+            countryField.setText(key.getCountry());
+            i++;
         }
-    }}
+
+        tvShowsTable.setModel(new javax.swing.table.DefaultTableModel(data, columnNames));
+        tableScrollPane.setVisible(true);
+
+
+    }
+}
