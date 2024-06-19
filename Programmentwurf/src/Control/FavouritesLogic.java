@@ -22,6 +22,11 @@ private FavouritesGui favouritesGui = new FavouritesGui(this);
             return true;
         }
     }
+    public void openFavScreen() {
+        List<Media> favouritesList = FavouritesStorage.getFavouritesList();
 
+        favouritesGui.favouritesScreen();
+        favouritesGui.setLabels(favouritesList);
+    }
 
 }

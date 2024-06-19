@@ -2,15 +2,14 @@ package View;
 
 import Control.FavouritesLogic;
 import Control.MediaLogic;
-import Model.FavouritesStorage;
-import Model.Media;
-import Model.Movies;
-import Model.Series;
+import Model.*;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.List;
 
 
@@ -52,11 +51,11 @@ public class FavouritesGui extends JFrame {
         information.add(actorsField);
         information.add(country);
         information.add(countryField);
-        f.add(information, BorderLayout.CENTER);
+        f.add(information, BorderLayout.SOUTH);
         f.add(tableScrollPane, BorderLayout.CENTER);
 
         f.setSize(600, 400);
-        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         f.setVisible(true);
 
         favouritesTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
@@ -64,15 +63,24 @@ public class FavouritesGui extends JFrame {
             public void valueChanged(ListSelectionEvent e) {
                 MediaLogic mediaLogic = new MediaLogic();
                 int row = favouritesTable.getSelectedRow();
-                String title = favouritesTable.getValueAt(row, 0).toString();
-                String[] information = mediaLogic.getInformation(title);
-                descriptionField.setText(information[0]);
-                directorField.setText(information[1]);
-                actorsField.setText(information[2]);
-                countryField.setText(information[3]);
+                if(row >= 0)    {
+                    String title = favouritesTable.getValueAt(row, 0).toString();
+                    String[] information = mediaLogic.getInformation(title);
+                    descriptionField.setText(information[0]);
+                    directorField.setText(information[1]);
+                    actorsField.setText(information[2]);
+                    countryField.setText(information[3]);
+                }
             }
         });
         MediaViewGui.setLabels(FavouritesStorage.getFavouritesList());
+
+        f.addWindowListener(new WindowAdapter(){
+            public void windowClosing(WindowEvent e){
+                f.dispose();
+                MediaViewGui.setLabels(MediaStorage.getMediaList());
+            }
+        });
     }
 
     public static void setLabels(List<Media> mediaTable) {

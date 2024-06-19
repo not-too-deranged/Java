@@ -53,7 +53,7 @@ public class MediaViewGui extends JFrame {
 
         searchButton.addActionListener(s -> mediaLogic.buttonFilter(searchField.getText(), type.getSelectedItem().toString(), genre.getSelectedItem().toString()));
 
-        JLabel search = new JLabel("Suche");
+        JLabel search = new JLabel("Suche:");
         JLabel description = new JLabel("Beschreibung:");
         JLabel director = new JLabel("Regisseur:");
         JLabel actors = new JLabel("Schauspieler:");
@@ -99,12 +99,14 @@ public class MediaViewGui extends JFrame {
             @Override
             public void valueChanged(ListSelectionEvent e) {
                 int row = tvShowsTable.getSelectedRow();
-                String title = tvShowsTable.getValueAt(row, 0).toString();
-                String[] information = mediaLogic.getInformation(title);
-                descriptionField.setText(information[0]);
-                directorField.setText(information[1]);
-                actorsField.setText(information[2]);
-                countryField.setText(information[3]);
+                if(row >= 0) {
+                    String title = tvShowsTable.getValueAt(row, 0).toString();
+                    String[] information = mediaLogic.getInformation(title);
+                    descriptionField.setText(information[0]);
+                    directorField.setText(information[1]);
+                    actorsField.setText(information[2]);
+                    countryField.setText(information[3]);
+                }
             }
         });
 
@@ -122,7 +124,7 @@ public class MediaViewGui extends JFrame {
         openFavourites.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                FavouritesGui.favouritesScreen();
+                favouritesLogic.openFavScreen();
             }
         });
 
