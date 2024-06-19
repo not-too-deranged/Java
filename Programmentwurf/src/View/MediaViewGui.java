@@ -1,5 +1,6 @@
 package View;
 
+import Control.FavouritesLogic;
 import Control.MediaLogic;
 import Model.Media;
 import Model.Movies;
@@ -30,8 +31,9 @@ public class MediaViewGui extends JFrame {
     static JTable tvShowsTable = new JTable();
     static JScrollPane tableScrollPane = new JScrollPane(tvShowsTable);
     private static MediaLogic mediaLogic;
+    private static FavouritesLogic favouritesLogic = new FavouritesLogic();
 
-    public MediaViewGui(MediaLogic mediaLogic)  {
+    public MediaViewGui(MediaLogic mediaLogic) {
         this.mediaLogic = mediaLogic;
     }
 
@@ -105,6 +107,26 @@ public class MediaViewGui extends JFrame {
                 countryField.setText(information[3]);
             }
         });
+
+        addFavourites.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int row = tvShowsTable.getSelectedRow();
+                String title = tvShowsTable.getValueAt(row, 0).toString();
+                if (!favouritesLogic.addFavourites(title)) {
+                    JOptionPane.showMessageDialog(f, "Bereits in Favoriten");
+                }
+            }
+        });
+
+        openFavourites.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                FavouritesGui.favouritesScreen();
+            }
+        });
+
+
     }
 
     public static JTable getTvShowsTable() {
@@ -141,7 +163,6 @@ public class MediaViewGui extends JFrame {
 
 
     }
-
 
 
 }
