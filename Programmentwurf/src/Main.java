@@ -1,3 +1,4 @@
+import Control.DataLogic;
 import Control.MediaLogic;
 import Model.MediaStorage;
 import View.MediaViewGui;
@@ -25,7 +26,7 @@ public class Main {
         if (returnValue == JFileChooser.APPROVE_OPTION) {
             selectedFile = jfc.getSelectedFile();
         }
-        mediaLogic.categorizeLines( selectedFile);
+        DataLogic.categorizeLines( selectedFile);
         mediaLogic.sortData(MediaStorage.getMediaList());
 
         MediaViewGui searchGui = new MediaViewGui(mediaLogic);
