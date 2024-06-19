@@ -126,15 +126,29 @@ public class MediaLogic {
         return media;
     }
 
+    public List<Media> getTypeResults(String selectedType, List<Media> mediaList) {
+        if (selectedType.equals("Shows")) {
+            selectedType = "Series";
+        }
+        String finalSelectedType = selectedType;
+        List<Media> media = mediaList.stream().filter(f -> f.getClass().getSimpleName().equals(finalSelectedType)).toList();
+        return media;
+    }
+
+    public List<Media> getGenreResults(String selectedGenre, List<Media> mediaList) {
+        List<Media> media = mediaList.stream().filter(f -> f.getGenre().contains(selectedGenre)).toList();
+        return media;
+    }
+
     public void buttonFilter(String userInput, String selectedType, String selectedGenre) {
         List<Media> mediaList = MediaStorage.getMediaList();
-        if(!selectedType.equals("-")) {
+        if (!selectedType.equals("-")) {
             mediaList = getTypeResults(selectedType, mediaList);
         }
-        if(!selectedGenre.equals("-")) {
+        if (!selectedGenre.equals("-")) {
             mediaList = getGenreResults(selectedGenre, mediaList);
         }
-        if(!userInput.equals("")) {
+        if (!userInput.equals("")) {
             mediaList = getSearchResults(userInput, mediaList);
         }
         MediaViewGui.setLabels(mediaList);

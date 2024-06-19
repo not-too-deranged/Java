@@ -16,7 +16,7 @@ import java.util.List;
 public class MediaViewGui extends JFrame {
     static JFrame f;
 
-    static String[] comboTypes = {"-", "Movies", "TV Shows"};
+    static String[] comboTypes = {"-", "Movies", "Shows"};
     static String[] comboGenre = {"-", "Action & Adventure", "Children & Family", "Comedies", "Horror", "Documentaries", "Entertainment", "Romantic", "Sci-Fi & Fantasy", "Thrillers"};
 
     static JComboBox<String> type = new JComboBox<>(comboTypes);
@@ -119,7 +119,7 @@ public class MediaViewGui extends JFrame {
         int i = 0;
         for (Media key : mediaTable) {
             data[i][0] = key.getTitle();
-            data[i][1] = key.getGenre().toString();
+            data[i][1] = key.getGenre().toString().replace("[", "").replace("]", "");
             if (key instanceof Movies m) {
                 data[i][3] = String.valueOf(m.getDurationInMin()) + " min";
                 data[i][2] = "Movie";
