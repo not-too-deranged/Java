@@ -84,7 +84,7 @@ public class MediaViewGui extends JFrame {
         infoAndFaves.add(information, BorderLayout.CENTER);
         infoAndFaves.add(favourites, BorderLayout.NORTH);
 
-        f.setVisible(true);
+
         f.add(searchOptions, BorderLayout.NORTH);
         f.add(infoAndFaves, BorderLayout.SOUTH);
 
@@ -129,9 +129,7 @@ public class MediaViewGui extends JFrame {
 
     }
 
-    public static JTable getTvShowsTable() {
-        return tvShowsTable;
-    }
+
 
 
     public static void setLabels(List<Media> mediaTable) {
