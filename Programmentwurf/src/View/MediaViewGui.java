@@ -41,7 +41,6 @@ public class MediaViewGui extends JFrame {
         f = new JFrame("Film & Serien Suche");
 
         try {
-            // set look and feel
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (Exception e) {
             System.err.println(e.getMessage());
@@ -91,7 +90,7 @@ public class MediaViewGui extends JFrame {
 
         f.add(tableScrollPane, BorderLayout.CENTER);
 
-        f.setSize(600, 400);
+        f.setSize(1200, 800);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.setVisible(true);
 
@@ -124,38 +123,24 @@ public class MediaViewGui extends JFrame {
         openFavourites.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                f.setVisible(false);
                 favouritesLogic.openFavScreen();
             }
         });
 
 
+
+
+    }
+
+    public static void setVisibleAgain() {
+        f.setVisible(true);
     }
 
 
 
-
     public static void setLabels(List<Media> mediaTable) {
-        String[] columnNames = {"Titel", "Genres", "Typ", "Dauer/Staffel", "Jahr", "Altersfreigabe"};
-        String[][] data = new String[mediaTable.size()][6];
 
-        int i = 0;
-        for (Media key : mediaTable) {
-            data[i][0] = key.getTitle();
-            data[i][1] = key.getGenre().toString().replace("[", "").replace("]", "");
-            if (key instanceof Movies m) {
-                data[i][3] = String.valueOf(m.getDurationInMin()) + " min";
-                data[i][2] = "Movie";
-            } else {
-                Series s = (Series) key;
-                data[i][3] = String.valueOf(s.getNumberOfSeasons());
-                data[i][2] = "Show";
-            }
-
-            data[i][4] = String.valueOf(key.getReleaseYear());
-            data[i][5] = key.getAgeRating();
-
-            i++;
-        }
 
         amountResults.setText("Anzahl der Ergebnisse: " + mediaTable.size());
         tvShowsTable.setModel(new javax.swing.table.DefaultTableModel(data, columnNames));

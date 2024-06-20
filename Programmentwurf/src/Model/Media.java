@@ -13,6 +13,8 @@ public class Media implements Comparable<Media>{
         return director;
     }
     private String cast;
+    private String comment;
+    private String rating;
     public String getCast(){
         return cast;
     }
@@ -36,6 +38,12 @@ public class Media implements Comparable<Media>{
     public String getDescription(){
         return description;
     }
+    public String getComment() {
+        return comment;
+    }
+    public String getRating() {
+        return rating;
+    }
 
     public int compareTo(Media data){
         return data.releaseYear - this.releaseYear;
@@ -56,5 +64,13 @@ public class Media implements Comparable<Media>{
     @Override
     public String toString() {
         return super.toString();
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    public void setRating(String rate) {
+        this.rating = rate;
     }
 }

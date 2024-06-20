@@ -3,16 +3,9 @@ package Control;
 
 import Model.Media;
 import Model.MediaStorage;
-import Model.Movies;
-import Model.Series;
 import View.MediaViewGui;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.*;
-import java.util.stream.Collectors;
 
 
 public class MediaLogic {
@@ -48,7 +41,7 @@ public class MediaLogic {
         return media;
     }
 
-    public void buttonFilter(String userInput, String selectedType, String selectedGenre) {
+    public List<Media> buttonFilter(String userInput, String selectedType, String selectedGenre) {
         List<Media> mediaList = MediaStorage.getMediaList();
         if (!selectedType.equals("-")) {
             mediaList = getTypeResults(selectedType, mediaList);
@@ -60,6 +53,7 @@ public class MediaLogic {
             mediaList = getSearchResults(userInput, mediaList);
         }
         MediaViewGui.setLabels(mediaList);
+        return mediaList;
 
     }
 

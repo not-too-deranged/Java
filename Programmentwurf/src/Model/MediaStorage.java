@@ -9,7 +9,7 @@ public class MediaStorage {
    public static List<Media> getMediaList(){
        return mediaList;
    }
-    public void setMediaList(List<Media> mediaList){
+    public static void setMediaList(List<Media> mediaList){
         MediaStorage.mediaList = mediaList;}
 
 public static void addElementsToList(Media mediaItems){
