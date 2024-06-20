@@ -3,6 +3,7 @@ package View;
 import Control.FavouritesLogic;
 import Control.MediaLogic;
 import Control.UtilityLogic;
+import Control.StatisticLogic;
 import Model.*;
 
 import javax.swing.*;
@@ -56,6 +57,7 @@ public class FavouritesGui extends JFrame {
         JLabel actors = new JLabel("Schauspieler:");
         JLabel country = new JLabel("Produktionsland:");
         rating = new JComboBox<>(comboRating);
+        JButton statistic = new JButton("Statistik anzeigen");
 
         JPanel information = new JPanel(new GridLayout(8, 1));
         information.add(description);
@@ -77,9 +79,13 @@ public class FavouritesGui extends JFrame {
         JPanel favesAndFunctions = new JPanel(new BorderLayout());
         favesAndFunctions.add(functions, BorderLayout.NORTH);
         favesAndFunctions.add(information, BorderLayout.SOUTH);
+        JPanel favesAndFunctionsAndStats = new JPanel(new BorderLayout());
+        favesAndFunctionsAndStats.add(favesAndFunctions, BorderLayout.CENTER);
+        favesAndFunctionsAndStats.add(statistic, BorderLayout.SOUTH);
         f.add(faves, BorderLayout.NORTH);
-        f.add(favesAndFunctions, BorderLayout.SOUTH);
+        f.add(favesAndFunctionsAndStats, BorderLayout.SOUTH);
         f.add(tableScrollPane, BorderLayout.CENTER);
+
 
         f.setSize(600, 400);
         f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -151,7 +157,17 @@ public class FavouritesGui extends JFrame {
                 FavouritesStorage.addRating(title, comment, rate);
             }
         });
+        statistic.addActionListener(new ActionListener() {
+            /**
+             * opens the statistic screen
+             */
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                StatisticLogic.openFavScreen();
+            }
+        });
     }
+
 
     public static void setLabels(List<Media> mediaTable) {
         String[] columnNames = {"Titel", "Genres", "Typ", "Dauer/Staffel", "Jahr", "Altersfreigabe"};

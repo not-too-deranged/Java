@@ -5,12 +5,12 @@ import View.StatistikGui;
 import java.util.List;
 
 public class StatisticLogic {
-    private StatistikGui statistikGui = new StatistikGui();
+    private static StatistikGui statistikGui = new StatistikGui();
 
     /**
      * opens statistic screen
      */
-    public void openFavScreen() {
+    public static void openFavScreen() {
         statistikGui.statisticScreen();
 
     }
