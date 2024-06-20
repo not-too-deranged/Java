@@ -13,14 +13,12 @@ public class FavouritesLogic {
 private FavouritesGui favouritesGui = new FavouritesGui(this);
 
     public boolean addFavourites(String title) {
-        List<Media> mediaList = MediaStorage.getMediaList();
-        List<Media> favouritesList = FavouritesStorage.getFavouritesList();
-        Optional<Media> media = mediaList.stream().filter(f -> f.getTitle().equals(title)).findFirst();
-        Optional<Media> favouritesMedia = favouritesList.stream().filter(f -> f.getTitle().equals(title)).findFirst();
-        if (favouritesMedia.isPresent()) {
+        Media media = UtilityLogic.getMediaByName(title, MediaStorage.getMediaList());
+        Media favouritesMedia = UtilityLogic.getMediaByName(title, FavouritesStorage.getFavouritesList());
+        if (favouritesMedia == null) {
             return false;
         } else {
-            FavouritesStorage.addElementsToList(media.get());
+            FavouritesStorage.addElementsToList(media);
             return true;
         }
     }
@@ -37,15 +35,14 @@ private FavouritesGui favouritesGui = new FavouritesGui(this);
 
     public void removeElement(String valueAt) {
         List<Media> favouritesList = FavouritesStorage.getFavouritesList();
-        Optional<Media> media = favouritesList.stream().filter(f -> f.getTitle().equals(valueAt)).findFirst();
-        favouritesList.remove(media.get());
+        Media media = UtilityLogic.getMediaByName(valueAt, favouritesList);
+        favouritesList.remove(media);
         favouritesGui.setLabels(favouritesList);
     }
 
     public String[] getInformation(String title) {
-        List<Media> mediaList = MediaStorage.getMediaList();
-        Optional<Media> media = mediaList.stream().filter(f -> f.getTitle().equals(title)).findFirst();
-        String[] information = {media.get().getRating(), media.get().getComment()};
+        Media media = UtilityLogic.getMediaByName(title, MediaStorage.getMediaList());
+        String[] information = {media.getRating(), media.getComment()};
         return information;
     }
 }

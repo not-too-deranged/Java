@@ -2,6 +2,7 @@ package View;
 
 import Control.FavouritesLogic;
 import Control.MediaLogic;
+import Control.UtilityLogic;
 import Model.Media;
 import Model.Movies;
 import Model.Series;
@@ -140,7 +141,8 @@ public class MediaViewGui extends JFrame {
 
 
     public static void setLabels(List<Media> mediaTable) {
-
+        String[][] data = UtilityLogic.getTableInformation(mediaTable);
+        String[] columnNames = {"Titel", "Genres", "Typ", "Dauer/Staffel", "Jahr", "Altersfreigabe"};
 
         amountResults.setText("Anzahl der Ergebnisse: " + mediaTable.size());
         tvShowsTable.setModel(new javax.swing.table.DefaultTableModel(data, columnNames));

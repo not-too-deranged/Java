@@ -15,9 +15,8 @@ public class MediaLogic {
     }
 
     public String[] getInformation(String userInput) {
-        List<Media> mediaList = MediaStorage.getMediaList();
-        Optional<Media> media = mediaList.stream().filter(f -> f.getTitle().equals(userInput)).findFirst();
-        String[] information = {media.get().getDescription(), media.get().getDirector(), media.get().getCast(), media.get().getCountry()};
+        Media media = UtilityLogic.getMediaByName(userInput, MediaStorage.getMediaList());
+        String[] information = {media.getDescription(), media.getDirector(), media.getCast(), media.getCountry()};
         return information;
     }
 

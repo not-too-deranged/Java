@@ -90,6 +90,7 @@ public class DataLogic {
                     int releaseYear = Integer.parseInt(values[7]);
                     String ageRating = age;
                     String description = values[11];
+
                     if (values[1].equalsIgnoreCase("Movie")) {
                         int durationInMin = Integer.parseInt(values[9].replace(" min", ""));
                         Movies movie = new Movies(title, genre, director, cast, country, releaseYear, ageRating, description, durationInMin);

@@ -18,16 +18,29 @@ public class Series extends Media {
     }
     public void setNumberOfSeasons(int numberOfSeasons) {
         this.numberOfSeasons = numberOfSeasons;
-    } //TODO define what must be true about seasons
+    }
 
     @Override
     public String toString() {
-        return super.toString();
+        return super.toString() + "numberOfSeasons = " + numberOfSeasons;
     }
 
     @Override
     public boolean equals(Object obj) {
-        return super.equals(obj);
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        if (!Objects.equals(this.getTitle(), ((Series) obj).getTitle())) {
+            return false;
+        }
+        Series series = (Series) obj;
+        if(numberOfSeasons != series.getNumberOfSeasons())     {
+            return false;
+        }
+        return true;
     }
 
     @Override

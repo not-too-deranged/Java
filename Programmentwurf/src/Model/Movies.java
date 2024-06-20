@@ -13,14 +13,28 @@ public class Movies extends Media {
         this.durationInMin = durationInMin;
     }
 
-    @Override //TODO when questioned in cmd
+    @Override
     public String toString() {
-        return super.toString();
+        return super.toString() + "durationInMin = " + durationInMin;
     }
 
-    @Override //TODO when same movies
+    @Override
     public boolean equals(Object obj) {
-        return super.equals(obj);
+
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        if (!Objects.equals(this.getTitle(), ((Movies) obj).getTitle())) {
+            return false;
+        }
+        Movies movies = (Movies) obj;
+        if(durationInMin != movies.durationInMin)     {
+            return false;
+        }
+            return true;
     }
 
     @Override

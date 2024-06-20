@@ -2,6 +2,7 @@ package View;
 
 import Control.FavouritesLogic;
 import Control.MediaLogic;
+import Control.UtilityLogic;
 import Model.*;
 
 import javax.swing.*;
@@ -134,28 +135,9 @@ public class FavouritesGui extends JFrame {
 
     public static void setLabels(List<Media> mediaTable) {
         String[] columnNames = {"Titel", "Genres", "Typ", "Dauer/Staffel", "Jahr", "Altersfreigabe"};
-        String[][] data = new String[mediaTable.size()][6];
-
-        int i = 0;
-        for (Media key : mediaTable) {
-            data[i][0] = key.getTitle();
-            data[i][1] = key.getGenre().toString().replace("[", "").replace("]", "");
-            if (key instanceof Movies m) {
-                data[i][3] = String.valueOf(m.getDurationInMin()) + " min";
-                data[i][2] = "Movie";
-            } else {
-                Series s = (Series) key;
-                data[i][3] = String.valueOf(s.getNumberOfSeasons());
-                data[i][2] = "Show";
-            }
-
-            data[i][4] = String.valueOf(key.getReleaseYear());
-            data[i][5] = key.getAgeRating();
-
-            i++;
-        }
+        String[][] data = UtilityLogic.getTableInformation(mediaTable);
         
-       favouritesTable.setModel(new javax.swing.table.DefaultTableModel(data, columnNames));
+        favouritesTable.setModel(new javax.swing.table.DefaultTableModel(data, columnNames));
         tableScrollPane.setVisible(true);
 
 

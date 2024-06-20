@@ -63,7 +63,8 @@ public class Media implements Comparable<Media>{
 
     @Override
     public String toString() {
-        return super.toString();
+
+        return "Title: " + title + "\n" + "Genre: " + genre + "\n" + "Director: " + director + "\n" + "Cast: " + cast + "\n" + "Country: " + country + "Release Year: " + releaseYear + "Age Rating: " + ageRating + "\n" + "Description: " + description + "\n";
     }
 
     public void setComment(String comment) {
