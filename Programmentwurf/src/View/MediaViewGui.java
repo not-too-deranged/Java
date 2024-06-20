@@ -38,6 +38,10 @@ public class MediaViewGui extends JFrame {
         this.mediaLogic = mediaLogic;
     }
 
+    /**
+     * creates the media screen adding all necessary elements and linking them to the needed methods
+     */
+
     public static void titleSearch() {
         f = new JFrame("Film & Serien Suche");
 
@@ -96,6 +100,10 @@ public class MediaViewGui extends JFrame {
         f.setVisible(true);
 
         tvShowsTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            /**
+             * fills out additional information on the media when a row is selected
+             * @param e the event that characterizes the change.
+             */
             @Override
             public void valueChanged(ListSelectionEvent e) {
                 int row = tvShowsTable.getSelectedRow();
@@ -111,6 +119,10 @@ public class MediaViewGui extends JFrame {
         });
 
         addFavourites.addActionListener(new ActionListener() {
+            /**
+             * throws a warning message if the user tries adding the same media item to the favourites list twice
+             * @param e the event to be processed
+             */
             @Override
             public void actionPerformed(ActionEvent e) {
                 int row = tvShowsTable.getSelectedRow();
@@ -122,6 +134,9 @@ public class MediaViewGui extends JFrame {
         });
 
         openFavourites.addActionListener(new ActionListener() {
+            /**
+             * opens the favorite screen and hides the media screen
+             */
             @Override
             public void actionPerformed(ActionEvent e) {
                 f.setVisible(false);
@@ -133,6 +148,11 @@ public class MediaViewGui extends JFrame {
 
 
     }
+
+    /**
+     * under special circumstances namely when the user decides the favourites screen shall no longer be required in their life, and they wish to see some more media items, and might even think of adding some more to the
+     * lists of favourites to be displayed once the favourites screen is reopened then this button shall help making the media screen once again appear if the favourites screen is closed
+     */
 
     public static void setVisibleAgain() {
         f.setVisible(true);

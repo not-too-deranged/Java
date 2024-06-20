@@ -41,7 +41,9 @@ public class Movies extends Media {
     public int hashCode() {
         return Objects.hash(durationInMin);
     }
-
+    /**
+     * initialised all parameters of movies
+     */
     public Movies(String title, Set<String> genre, String director, String cast, String country, int releaseYear, String ageRating, String description, int durationInMin) {
         super(title, genre, director, cast, country, releaseYear, ageRating, description);
         this.durationInMin = durationInMin;

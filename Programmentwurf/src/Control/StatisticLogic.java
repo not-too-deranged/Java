@@ -6,6 +6,10 @@ import java.util.List;
 
 public class StatisticLogic {
     private StatistikGui statistikGui = new StatistikGui();
+
+    /**
+     * opens statistic screen
+     */
     public void openFavScreen() {
         statistikGui.statisticScreen();
 

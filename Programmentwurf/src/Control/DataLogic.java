@@ -14,6 +14,11 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class DataLogic {
+    /**
+     * Remaps age rating and genre information taken from the selected File
+     * After that's done an Object of the type Movies or Series is initialised and added to the MediaList in MediaStorage
+     * @param selectedFile the csv File that should be read in
+     */
     public static void categorizeLines(File selectedFile) {
         try {
             assert selectedFile != null;

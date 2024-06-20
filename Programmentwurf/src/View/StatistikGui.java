@@ -9,6 +9,10 @@ import java.awt.event.ActionListener;
 public class StatistikGui extends JFrame {
     static JFrame f;
 
+    /**
+     * creates the statistic screen adding nothing
+     */
+
     public static void statisticScreen() {
         f = new JFrame("Statistic Screen");
         try {

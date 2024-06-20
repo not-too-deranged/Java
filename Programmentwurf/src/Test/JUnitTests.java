@@ -13,6 +13,9 @@ import static org.junit.jupiter.api.Assertions.*;
 public class JUnitTests {
     List<Media> mediaData = new ArrayList<>();
 
+    /**
+     * initialised media objects for the later tests
+     */
     @BeforeEach
     public void setup() {
         Set<String> set = new HashSet<>();
@@ -29,11 +32,19 @@ public class JUnitTests {
         mediaData.add(mediaLast);
         mediaData.add(mediaThird);
     }
+
+    /**
+     * tests the sorting of the media via its release year in a descending manner
+     */
     @Test
     public void testSortData()  {
         Collections.sort(mediaData);
         assertTrue(mediaData.get(0).getReleaseYear() == 2024 && mediaData.get(1).getReleaseYear() == 2020 && mediaData.get(2).getReleaseYear() == 2020 && mediaData.get(3).getReleaseYear() == 2018);
     }
+
+    /**
+     * tests the filters by which media can be filtered
+     */
 
     @Test
     public void testFilter()    {

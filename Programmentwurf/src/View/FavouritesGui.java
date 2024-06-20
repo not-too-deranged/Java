@@ -33,6 +33,10 @@ public class FavouritesGui extends JFrame {
         this.favouritesLogic = favouritesLogic;
     }
 
+    /**
+     * creates the favourite screen adding all necessary elements and linking them to the needed methods
+     */
+
     public static void favouritesScreen() {
         f = new JFrame("Favoriten Screen");
         try {
@@ -82,6 +86,10 @@ public class FavouritesGui extends JFrame {
         f.setVisible(true);
 
         favouritesTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            /**
+             * fills out additional information on the media when a row is selected
+             * @param e the event that characterizes the change.
+             */
             @Override
             public void valueChanged(ListSelectionEvent e) {
                 MediaLogic mediaLogic = new MediaLogic();
@@ -107,6 +115,10 @@ public class FavouritesGui extends JFrame {
         MediaViewGui.setLabels(FavouritesStorage.getFavouritesList());
 
         f.addWindowListener(new WindowAdapter(){
+            /**
+             * closes the initial media screen once the favourites screen gets opened
+             * @param e the event to be processed
+             */
             public void windowClosing(WindowEvent e){
                 f.dispose();
                 favouritesLogic.setMediaWindow();
@@ -115,6 +127,10 @@ public class FavouritesGui extends JFrame {
         });
 
         delete.addActionListener(new ActionListener() {
+            /**
+             * removes the selected media items from the favourites list
+             * @param ae the event to be processed
+             */
             @Override
             public void actionPerformed(ActionEvent ae) {
                 favouritesLogic.removeElement((String) favouritesTable.getValueAt(favouritesTable.getSelectedRow(), 0));
@@ -122,6 +138,10 @@ public class FavouritesGui extends JFrame {
         });
 
         save.addActionListener(new ActionListener() {
+            /**
+             * adds the selected media from media screen to the favourites list
+             * @param ae the event to be processed
+             */
             @Override
             public void actionPerformed(ActionEvent ae) {
                 int row = favouritesTable.getSelectedRow();

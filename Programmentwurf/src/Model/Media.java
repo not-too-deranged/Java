@@ -45,9 +45,19 @@ public class Media implements Comparable<Media>{
         return rating;
     }
 
+    /**
+     * compares the release year
+     * @param data the media to be compared.
+     * @return returns release years in a descending manner
+     */
+
     public int compareTo(Media data){
         return data.releaseYear - this.releaseYear;
     }
+
+    /**
+     * initialised all parameters of media
+     */
 
     public Media(String title, Set<String> genre, String director, String cast, String country, int releaseYear, String ageRating, String description) {
         this.title = title;
@@ -60,6 +70,11 @@ public class Media implements Comparable<Media>{
         this.description = description;
 
     }
+
+    /**
+     *
+     * @return descriptions of the objects as a string
+     */
 
     @Override
     public String toString() {

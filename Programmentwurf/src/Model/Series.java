@@ -7,7 +7,9 @@ import java.util.Set;
 
 public class Series extends Media {
     private int numberOfSeasons;
-
+    /**
+     * initialised all parameters of series
+     */
     public Series(String title, Set<String> genre, String director, String cast, String country, int releaseYear, String ageRating, String description, int numberOfSeasons) {
         super(title, genre, director, cast, country, releaseYear, ageRating, description);
         this.numberOfSeasons = numberOfSeasons;

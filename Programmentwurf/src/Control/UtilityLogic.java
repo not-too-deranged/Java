@@ -9,6 +9,11 @@ import java.util.List;
 import java.util.Optional;
 
 public class UtilityLogic {
+    /**
+     * creates the table for the screens
+     * @param mediaTable data for the table
+     * @return correctly arranged table data
+     */
     public static String[][] getTableInformation(List<Media> mediaTable) {
 
         String[][] data = new String[mediaTable.size()][6];
@@ -33,6 +38,13 @@ public class UtilityLogic {
         }
         return data;
     }
+
+    /**
+     * gets media data by title to be used by other methods
+     * @param title title of media item
+     * @param mediaList data
+     * @return the media data that matches the title
+     */
 
     public static Media getMediaByName(String title, List<Media> mediaList)    {
         Optional<Media> media = mediaList.stream().filter(f -> f.getTitle().equals(title)).findFirst();

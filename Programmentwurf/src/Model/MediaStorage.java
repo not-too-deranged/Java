@@ -12,6 +12,11 @@ public class MediaStorage {
     public static void setMediaList(List<Media> mediaList){
         MediaStorage.mediaList = mediaList;}
 
+    /**
+     * adds media items to list
+     * @param mediaItems media items
+     */
+
 public static void addElementsToList(Media mediaItems){
        mediaList.add(mediaItems);
 }
